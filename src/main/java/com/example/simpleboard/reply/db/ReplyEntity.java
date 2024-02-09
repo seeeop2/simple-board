@@ -1,4 +1,4 @@
-package com.example.simpleboard.reply;
+package com.example.simpleboard.reply.db;
 
 import lombok.*;
 
