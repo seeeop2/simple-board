@@ -1,5 +1,7 @@
 package com.example.simpleboard.post.service;
 
+import com.example.simpleboard.board.db.BoardEntity;
+import com.example.simpleboard.board.db.BoardRepository;
 import com.example.simpleboard.post.db.PostEntity;
 import com.example.simpleboard.post.db.PostRepository;
 import com.example.simpleboard.post.model.PostRequest;
@@ -12,17 +14,21 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class PostService {
 
     private final PostRepository postRepository;
+    private final BoardRepository boardRepository;
     private final ReplyService replyService;
 
     public PostEntity create(PostRequest postRequest){
+        BoardEntity boardEntity = boardRepository.findById(postRequest.getBoardId()).get();
+
         PostEntity entity = PostEntity.builder()
-                .boardId(1L) // << 임시 고정
+                .board(boardEntity)
                 .userName(postRequest.getUserName())
                 .password(postRequest.getPassword())
                 .email(postRequest.getEmail())

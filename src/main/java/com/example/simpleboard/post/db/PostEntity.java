@@ -1,6 +1,8 @@
 package com.example.simpleboard.post.db;
 
+import com.example.simpleboard.board.db.BoardEntity;
 import com.example.simpleboard.reply.db.ReplyEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,7 +23,10 @@ public class PostEntity {
     @Id @GeneratedValue
     private Long id;
 
-    private Long boardId;
+    @ManyToOne
+    @ToString.Exclude
+    @JsonIgnore
+    private BoardEntity board;  //연관관계 일 때, board+_id --> board_id로 관계 맺어준다.
 
     private String userName;
 
