@@ -1,9 +1,12 @@
 package com.example.simpleboard.post.db;
 
+import com.example.simpleboard.reply.db.ReplyEntity;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,5 +37,9 @@ public class PostEntity {
     private String content;
 
     private LocalDateTime postedAt;
+
+//    @OneToMany
+    @Transient
+    private List<ReplyEntity> replyList = List.of();
 
 }

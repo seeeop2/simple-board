@@ -4,6 +4,9 @@ import com.example.simpleboard.post.db.PostEntity;
 import com.example.simpleboard.post.db.PostRepository;
 import com.example.simpleboard.post.model.PostRequest;
 import com.example.simpleboard.post.model.PostViewRequest;
+import com.example.simpleboard.reply.db.ReplyEntity;
+import com.example.simpleboard.reply.db.ReplyRepository;
+import com.example.simpleboard.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final ReplyService replyService;
 
     public PostEntity create(PostRequest postRequest){
         PostEntity entity = PostEntity.builder()
@@ -42,7 +46,13 @@ public class PostService {
 
                         throw new RuntimeException(String.format(format, it.getPassword() , postViewRequest.getPassword()));
                     }
+
+                    // 답변글도 같이 적용
+                    List<ReplyEntity> replyList = replyService.findAllByPostId(it.getId());
+                    it.setReplyList(replyList);
+
                     return it;
+
                 }).orElseThrow(() -> {
                     return new RuntimeException("해당 게시글이 존재 하지 않습니다 : " + postViewRequest.getPostId());
                 });
