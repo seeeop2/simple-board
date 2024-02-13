@@ -1,5 +1,7 @@
 package com.example.simpleboard.reply.db;
 
+import com.example.simpleboard.post.db.PostEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +20,10 @@ public class ReplyEntity {
     @Id @GeneratedValue
     private Long id;
 
-    private Long postId;
+    @JsonIgnore
+    @ToString.Exclude
+    @ManyToOne
+    private PostEntity post;
 
     private String userName;
 

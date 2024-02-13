@@ -22,7 +22,7 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final BoardRepository boardRepository;
-    private final ReplyService replyService;
+//    private final ReplyService replyService;
 
     public PostEntity create(PostRequest postRequest){
         BoardEntity boardEntity = boardRepository.findById(postRequest.getBoardId()).get();
@@ -54,8 +54,10 @@ public class PostService {
                     }
 
                     // 답변글도 같이 적용
+/* 연관 관계 매핑을 했기 때문에 불필요
                     List<ReplyEntity> replyList = replyService.findAllByPostId(it.getId());
                     it.setReplyList(replyList);
+*/
 
                     return it;
 
