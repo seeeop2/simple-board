@@ -21,7 +21,7 @@ public class BoardConverter {
             return postConverter.toDto(postEntity);
         }).collect(Collectors.toList());
 
-        BoardDto.builder()
+        return BoardDto.builder()
                 .id(boardEntity.getId())
                 .boardName(boardEntity.getBoardName())
                 .status(boardEntity.getStatus())
