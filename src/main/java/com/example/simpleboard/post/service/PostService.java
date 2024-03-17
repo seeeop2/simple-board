@@ -4,8 +4,10 @@ import com.example.simpleboard.board.common.Api;
 import com.example.simpleboard.board.common.Pagination;
 import com.example.simpleboard.board.db.BoardEntity;
 import com.example.simpleboard.board.db.BoardRepository;
+import com.example.simpleboard.crud.CRUDAbstractService;
 import com.example.simpleboard.post.db.PostEntity;
 import com.example.simpleboard.post.db.PostRepository;
+import com.example.simpleboard.post.model.PostDto;
 import com.example.simpleboard.post.model.PostRequest;
 import com.example.simpleboard.post.model.PostViewRequest;
 import com.example.simpleboard.reply.db.ReplyEntity;
@@ -22,9 +24,9 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class PostService {
+public class PostService extends CRUDAbstractService<PostDto,PostEntity> {
 
-    private final PostRepository postRepository;
+/*    private final PostRepository postRepository;
     private final BoardRepository boardRepository;
 //    private final ReplyService replyService;
 
@@ -58,10 +60,10 @@ public class PostService {
                     }
 
                     // 답변글도 같이 적용
-/* 연관 관계 매핑을 했기 때문에 불필요
+*//* 연관 관계 매핑을 했기 때문에 불필요
                     List<ReplyEntity> replyList = replyService.findAllByPostId(it.getId());
                     it.setReplyList(replyList);
-*/
+*//*
 
                     return it;
 
@@ -107,5 +109,5 @@ public class PostService {
                     return new RuntimeException("해당 게시글이 존재 하지 않습니다 : " + postViewRequest.getPostId());
                 });
 
-    }
+    }*/
 }

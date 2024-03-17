@@ -18,7 +18,7 @@ public class BoardConverter {
 
     public BoardDto toDto(BoardEntity boardEntity){
         List<PostDto> postList = boardEntity.getPostList().stream().map(postEntity -> {
-            return postConverter.toDto(postEntity);
+            return postConverter.toDTO(postEntity);
         }).collect(Collectors.toList());
 
         return BoardDto.builder()
