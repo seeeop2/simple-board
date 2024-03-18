@@ -23,6 +23,6 @@ public class BoardDto {
 
     private String status;
 
-    private List<PostDto> postList = List.of();
+//    private List<PostDto> postList = List.of();
 
 }
